@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>AJAX Example</title>
+<script type="text/javascript">
+	function func1() {
+		var a;
+		if (window.XMLHttpRequest) {
+			a = new XMLHttpRequest();
+		} else {
+			a = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		a.onreadystatechange = function() {
+			if (a.readyState == 4 && a.status == 200) {
+				document.getElementById("myDiv").innerHtml = a.responseText;
+				document.getElementById("textArea").value = a.responseText;
+			}
+		}
+		a.open("POST","ajax.txt", true);
+		a.send();
+	}
+</script>
+</head>
+<body>
+	<div id="myDiv" style="width: 300px; height: 30px;">Click on the
+		button below</div>
+	<textarea rows="5" cols="40" id="textArea"></textarea>
+<br>
+<br>
+<button type="button" onclick="func1()">Change Content</button>
+
+</body>
+</html>
